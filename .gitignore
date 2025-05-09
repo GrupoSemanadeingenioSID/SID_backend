@@ -2,7 +2,7 @@
 *.class
 
 .idea
-tarjet/
+target/
 build/
 bin/
 out/
