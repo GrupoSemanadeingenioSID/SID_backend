@@ -2,6 +2,7 @@
 *.class
 
 .idea
+.mvn
 target/
 build/
 bin/
@@ -9,4 +10,11 @@ out/
 
 #Logs:
 *.log
+
+#maven
+*.mvn
+*.jar
+mvnw
+mvnw.*
+
 
