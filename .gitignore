@@ -1,0 +1,12 @@
+#Archvos compilados
+*.class
+
+.idea
+tarjet/
+build/
+bin/
+out/
+
+#Logs:
+*.log
+
