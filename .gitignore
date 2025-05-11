@@ -17,4 +17,6 @@ out/
 mvnw
 mvnw.*
 
+# git:
+.gitattributes
 

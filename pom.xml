@@ -1,178 +1,196 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.sid</groupId>
-	<artifactId>portal-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>portal-web</name>
-	<description>Portal web del sid para su visibilidad y control</description>
-	<url/>
-	<licenses>
-		<license>
-			<name>Propiedad SID - Todos los derechos reservados</name>
-			<distribution>none</distribution> <!-- ¡Importante! Evita redistribución pública -->
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-<!--			 Lider : -->
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-				<role>Teach Lead</role>
-				<role>Architect</role>
-			</roles>
-		</developer>
-<!--		 Desarrolladores -->
-		<developer>
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-				<role>Leader</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-				<role>Developer</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-			</roles>
-		</developer>
-<!--		 Bases de datos: -->
-		<developer>
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-				<role>Leader</role>
-			</roles>
-		</developer>
-		<developer>
-			<name>Henry Ricaurte Mora</name>
-			<email>hricaurtem@udistrital.edu.co</email>
-			<organization>SID</organization>
-			<roles>
-				<role>Backend Developer</role>
-				<role>Developer</role>
-			</roles>
-		</developer>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
-	<properties>
-		<java.version>21</java.version>
-		<project.license>Propietario</project.license>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.5</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.sid</groupId>
+    <artifactId>portal-web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>portal-web</name>
+    <description>Portal web del sid para su visibilidad y control</description>
+    <url/>
+    <licenses>
+        <license>
+            <name>Propiedad SID - Todos los derechos reservados</name>
+            <distribution>none</distribution> <!-- ¡Importante! Evita redistribución pública -->
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <!--			 Lider : -->
+            <name>Henry Ricaurte Mora</name>
+            <email>hricaurtem@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+                <role>Teach Lead</role>
+                <role>Architect</role>
+            </roles>
+        </developer>
+        <!--		 Desarrolladores -->
+        <developer>
+            <name>Javier Alejandro Penagos Hernández</name>
+            <email>japenagosh@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Jonathan Felipe Ochoa Silva</name>
+            <email>jfochoas@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Henry Ricaurte Mora</name>
+            <email>hricaurtem@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+            </roles>
+        </developer>
+        <!--		 Bases de datos: -->
+        <developer>
+            <name>Juan Pablo Bustos Urueña</name>
+            <email>jpbustosu@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Database designer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Henry Ricaurte Mora</name>
+            <email>hricaurtem@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>21</java.version>
+        <project.license>Propietario</project.license>
+    </properties>
 
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.restdocs</groupId>
-			<artifactId>spring-restdocs-mockmvc</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.asciidoctor</groupId>
-				<artifactId>asciidoctor-maven-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>generate-docs</id>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>process-asciidoc</goal>
-						</goals>
-						<configuration>
-							<backend>html</backend>
-							<doctype>book</doctype>
-						</configuration>
-					</execution>
-				</executions>
-				<dependencies>
-<!--					<dependency>-->
-<!--						<groupId>org.springframework.restdocs</groupId>-->
-<!--						<artifactId>spring-restdocs-asciidoctor</artifactId>-->
-<!--						<version>${spring-restdocs.version}</version>-->
-<!--					</dependency>-->
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!--	 DEPENDENCIAS  -->
+
+
+    <dependencies>
+        <!--        Estado del servidor-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--        Inicio de la aplicacion-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--	Base de datos-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--		Loombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--		Documentacion: -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.5.0</version> <!-- Versión estable para Spring Boot 3.3.x -->
+        </dependency>
+        <!--		Testing-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.asciidoctor</groupId>
+                <artifactId>asciidoctor-maven-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>generate-docs</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>process-asciidoc</goal>
+                        </goals>
+                        <configuration>
+                            <backend>html</backend>
+                            <doctype>book</doctype>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <!--					<dependency>-->
+                    <!--						<groupId>org.springframework.restdocs</groupId>-->
+                    <!--						<artifactId>spring-restdocs-asciidoctor</artifactId>-->
+                    <!--						<version>${spring-restdocs.version}</version>-->
+                    <!--					</dependency>-->
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
