@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+
+spring:
+  profiles:
+    active: test
+  application:
+    name: portal-web
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+
+logging:
+  level:
+    root: off
+    org:
+      springframework: OFF
