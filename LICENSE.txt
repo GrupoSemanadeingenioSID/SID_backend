@@ -1,7 +1,18 @@
 Copyright © 2024 SID. Todos los derechos reservados.
 
 Este software y su código fuente son propiedad exclusiva de SID.
+
 Queda estrictamente prohibido:
-- Su distribución pública o comercialización.
-- Su modificación, copia o uso sin autorización escrita.
-- Incluirlo en otros proyectos sin consentimiento.
+- Su distribución pública o comercialización sin autorización expresa.
+- Su modificación, copia o uso sin consentimiento escrito del equipo de desarrollo original.
+- Incluirlo total o parcialmente en otros proyectos sin aprobación formal.
+
+Este proyecto ha sido desarrollado con contribuciones sustanciales de miembros identificables del equipo técnico.
+La omisión, eliminación o invisibilización intencional del reconocimiento a quienes participaron activamente en su desarrollo será considerada una violación ética y legal, y se interpretará como uso indebido del software.
+
+El uso de este software, en cualquier entorno (incluido productivo, académico o demostrativo), requiere el debido **reconocimiento visible** de los autores y colaboradores que hayan aportado al diseño, arquitectura, implementación o documentación técnica.
+
+Toda acción que implique despliegue, exhibición o publicación del proyecto sin la debida atribución constituye una falta grave a los derechos de autor y podrá derivar en acciones correctivas o legales según corresponda.
+
+Fecha de emisión: Mayo 11 2025
+Autor(es): Henry Ricaurte Mora
