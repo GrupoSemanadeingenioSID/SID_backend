@@ -15,13 +15,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 
-@WebMvcTest(ActivityV2Controller.class)
-class ActivityV2ControllerTest {
-
+@WebMvcTest(ActivityV1Controller.class)
+class ActivityV1ControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -117,12 +114,133 @@ class ActivityV2ControllerTest {
                         .header("Authorization", "Bearer dummy-token")
                         .content(requestBody))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.title").value("Nueva actividad"))
-                .andExpect(jsonPath("$.status").value("ACTIVA"))
-                .andExpect(jsonPath("$.created_at").value("2025-05-12T08:00:00Z"));
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Creado con exito"));
+
     }
 
+    @DisplayName("Debería actualizar completamente una actividad existente y retornar confirmación")
+    @Test
+    public void putActivities() throws Exception {
+        String requestBody = """
+        {
+            "title": "Reunión actualizada",
+            "description": "Reunión del comité con cambios",
+            "priority": "MEDIA",
+            "status": "ESPERA",
+            "total_hours": 15,
+            "start_date": "2025-06-01T10:00:00Z",
+            "completation_date": "2025-06-15T17:00:00Z",
+            "manager": "Ana Pérez Modificado",
+            "members": [
+                {
+                    "name": "Carlos Ruiz Actualizado",
+                    "identify": "CR123",
+                    "isMember": false
+                }
+            ],
+            "committees": [
+                {
+                    "committee_id": 2,
+                    "description": "Nuevo comité de organización"
+                }
+            ]
+        }
+    """;
+
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/v1/activities/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("Authorization", "Bearer dummy-token")
+                        .content(requestBody))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Actividad actualizada con éxito"));
+    }
+
+    @DisplayName("Debería actualizar parcialmente una actividad con JSON Patch")
+    @Test
+    public void patchActivity() throws Exception {
+        // Ejemplo de operación JSON Patch
+        String patchRequest = """
+        [
+            {
+                "op": "replace",
+                "path": "/status",
+                "value": "COMPLETADA"
+            },
+            {
+                "op": "replace",
+                "path": "/priority",
+                "value": "BAJA"
+            },
+            {
+                "op": "add",
+                "path": "/members/-",
+                "value": {
+                    "name": "Nuevo Miembro",
+                    "identify": "NM001",
+                    "isMember": true
+                }
+            }
+        ]
+    """;
+
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/activities/1")
+                        .contentType("application/json-patch+json") // Content-Type específico para JSON Patch
+                        .header("Authorization", "Bearer dummy-token")
+                        .content(patchRequest))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Actividad actualizada parcialmente con éxito"));
+    }
+
+    @DisplayName("Debería fallar con operación PATCH inválida")
+    @Test
+    public void patchActivityWithInvalidOperation() throws Exception {
+        String invalidPatch = """
+        [
+            {
+                "op": "invalid",  // Operación no soportada
+                "path": "/status",
+                "value": "COMPLETADA"
+            }
+        ]
+    """;
+
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/activities/1")
+                        .contentType("application/json-patch+json")
+                        .content(invalidPatch))
+                .andExpect(status().isBadRequest());
+    }
+
+    @DisplayName("Debería fallar con ruta PATCH inválida")
+    @Test
+    public void patchActivityWithInvalidPath() throws Exception {
+        String invalidPathPatch = """
+        [
+            {
+                "op": "replace",
+                "path": "/campo_inexistente",  // Campo que no existe
+                "value": "valor"
+            }
+        ]
+    """;
+
+        mockMvc.perform(MockMvcRequestBuilders.patch("/api/v1/activities/1")
+                        .contentType("application/json-patch+json")
+                        .content(invalidPathPatch))
+                .andExpect(status().isBadRequest());
+    }
+
+    @DisplayName("Debería eliminar una actividad existente")
+    @Test
+    public void deleteActivity() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/activities/1")
+                        .header("Authorization", "Bearer dummy-token"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Actividad eliminada con éxito"));
+    }
 
 }
 
