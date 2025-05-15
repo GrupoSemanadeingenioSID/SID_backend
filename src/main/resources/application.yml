@@ -1,17 +1,18 @@
 server:
   port: 8080
-
+  #  Aplicacion
 
 spring:
+  #   Aplicacion
   application:
     name: portal-web
+  #    Base de datos
   datasource:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
-
+  #Jpa
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: true
-

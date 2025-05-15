@@ -1,9 +1,6 @@
 package com.sid.portal_web.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serial;
@@ -12,7 +9,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 public class UserEntity implements Serializable {
     @Serial
@@ -20,11 +17,13 @@ public class UserEntity implements Serializable {
 
     @Id
     @Column(name = "user_id")
-    private Integer id;
-
+    private Integer userId;
 
     private String email;
-
+    private String password;
     private boolean active;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private ProfileEntity profile;
 
 }

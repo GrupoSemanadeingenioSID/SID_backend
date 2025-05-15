@@ -1,4 +1,4 @@
 package com.sid.portal_web.service.activity;
 
-public interface IActivityService {
+public interface ActivityService {
 }
