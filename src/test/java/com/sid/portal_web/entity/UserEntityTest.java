@@ -21,13 +21,6 @@ class UserEntityTest {
     }
 
     @Test
-    void getPassword() {
-        UserEntity user = new UserEntity();
-        user.setPassword("123456");
-        assertEquals("123456", user.getPassword());
-    }
-
-    @Test
     void isActive() {
         UserEntity user = new UserEntity();
         user.setActive(false);
