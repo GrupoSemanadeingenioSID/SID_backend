@@ -1,37 +1,30 @@
 package com.sid.portal_web.entity;
 
-public class UserEntity {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
-    public void setId(int id)
-    {
+import java.io.Serial;
+import java.io.Serializable;
 
-    }
-    public void setEmail(String id)
-    {
 
-    }
-    public void setPassword(String id)
-    {
 
-    }
-    public void setActive(boolean id)
-    {
+@Entity
+@Table(name = "user")
+@Data
+public class UserEntity implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    }
+    @Id
+    @Column(name = "user_id")
+    private Integer id;
 
-    public int getId() {
-        return 0;
-    }
 
-    public String getEmail() {
-        return "";
-    }
+    private String email;
 
-    public String getPassword() {
-        return "password";
-    }
+    private boolean active;
 
-    public boolean isActive() {
-        return false;
-    }
 }
