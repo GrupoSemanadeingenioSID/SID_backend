@@ -20,4 +20,5 @@ public class DirectorRegister {
 
     public UserEntity getUser(){
         return registerBuilder.getUserEntity();
-    }}
+    }
+}

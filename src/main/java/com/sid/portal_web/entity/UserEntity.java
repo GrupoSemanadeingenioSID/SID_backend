@@ -22,6 +22,7 @@ public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
 
@@ -30,7 +31,7 @@ public class UserEntity implements Serializable {
     private String password;
     private boolean active;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user")//, cascade = CascadeType.ALL)
     private ProfileEntity profile;
 
 }

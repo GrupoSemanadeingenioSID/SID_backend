@@ -19,7 +19,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        final UserEntity user = userService.findByEmail(username)
+        final UserEntity user = userService.findByEmail(username) // Buscamos por el email, es decir el del SID
                 .orElseThrow(UserException::userNotFound);
 
 

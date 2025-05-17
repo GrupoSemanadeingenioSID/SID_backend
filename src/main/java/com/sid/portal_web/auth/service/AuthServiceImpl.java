@@ -7,10 +7,10 @@ import com.sid.portal_web.auth.service.registerBuilder.DirectorRegister;
 import com.sid.portal_web.dto.request.LoginRequest;
 import com.sid.portal_web.dto.request.RegisterRequest;
 import com.sid.portal_web.dto.response.AuthResponse;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
@@ -26,12 +26,12 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse login(LoginRequest loginRequest) {
-        authenticationManager.authenticate(
+        Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
                         loginRequest.getPassword())
         );
-         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getEmail());
+         UserDetails userDetails = (UserDetails) authentication.getPrincipal(); // mirar eso
 
         String token = jwtService.getToken(userDetails);
         return AuthResponse.builder()
@@ -40,9 +40,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    @Transactional
     public AuthResponse register(RegisterRequest registerRequest) {
-
+        System.out.println("Register: "+registerRequest);
         directorRegister.register(registerRequest);
         String email = directorRegister.getUser().getEmail();
 

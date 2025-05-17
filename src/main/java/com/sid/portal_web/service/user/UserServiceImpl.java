@@ -1,7 +1,9 @@
 package com.sid.portal_web.service.user;
 
+import com.sid.portal_web.core.User;
 import com.sid.portal_web.entity.UserEntity;
 import com.sid.portal_web.error.UserException;
+import com.sid.portal_web.mapper.user.UserMapper;
 import com.sid.portal_web.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,17 +14,28 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserRepository repository;
+    private final UserMapper userMapper;
 
     @Override
-    public UserEntity save(UserEntity user) {
-        if(repository.existsByEmail(user.getEmail())) {
+    public UserEntity save(User userCore) {
+        UserEntity entity = userMapper.domainToEntity(userCore);
+
+        if (this.existsByInstitutionalEmail(entity.getEmail())) {
             throw UserException.userAlreadyExists();
         }
-        return repository.save(user);
+
+        // Ahora debemos hacer un servicio extra que es el Email de confrmacíon
+        return repository.save(entity);
+    }
+
+    // Aqui lo cambiaremos para dividir cuando se guarda de cuand
+    @Override
+    public UserEntity saveUpdate(UserEntity user) {
+        return null;
     }
 
     @Override
-    public boolean existsByEmail(String email) {
-        return repository.existsByEmail(email);
+    public boolean existsByInstitutionalEmail(String email) {
+        return repository.findByInstitutionalEmail(email).isPresent();
     }
 }

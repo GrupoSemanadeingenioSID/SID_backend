@@ -8,13 +8,15 @@ import com.sid.portal_web.dto.response.UserWithProfileResponse;
 import com.sid.portal_web.entity.UserEntity;
 import com.sid.portal_web.mapper.profile.ProfileMapper;
 import com.sid.portal_web.mapper.user.UserMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class UserWithProfileMapper {
 
-    private final UserMapper userMapper = new UserMapper();
-    private final ProfileMapper profileMapper = new ProfileMapper();
+    private final UserMapper userMapper;
+    private final ProfileMapper profileMapper;
 
     public UserWithProfile entityToCore(UserEntity userEntity) {
 
