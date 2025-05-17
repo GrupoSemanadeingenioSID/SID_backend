@@ -19,5 +19,15 @@ public class UserException extends RuntimeException {
         return new UserException("Password must have at least 8 characters");
     }
 
+    public static UserException userNotFound()
+    {
+        return new UserException("User not found");
+    }
+
+    public static UserException userAlreadyExists()
+    {
+        return new UserException("User already exists");
+    }
+
 
 }

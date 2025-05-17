@@ -2,7 +2,7 @@ package com.sid.portal_web.controller.user;
 
 
 import com.sid.portal_web.dto.response.UserWithProfileResponse;
-import com.sid.portal_web.service.user.UserWithProfileService;
+import com.sid.portal_web.service.userWithProfile.UserWithProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

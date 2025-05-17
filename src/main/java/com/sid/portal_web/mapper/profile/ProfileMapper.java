@@ -9,7 +9,7 @@ public class ProfileMapper {
         return new Profile(
                 profile.getUserId(),
                 profile.getName(),
-                profile.getProfile_image(),
+                profile.getProfileImage(),
                 profile.getBio(),
                 profile.getAcademic_degree());
     }

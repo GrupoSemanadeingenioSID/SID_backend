@@ -1,4 +1,4 @@
-package com.sid.portal_web.service.user;
+package com.sid.portal_web.service.userWithProfile;
 
 import com.sid.portal_web.core.User;
 import com.sid.portal_web.core.UserWithProfile;

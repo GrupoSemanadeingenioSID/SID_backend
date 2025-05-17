@@ -2,6 +2,8 @@ package com.sid.portal_web.entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -11,6 +13,8 @@ import java.io.Serializable;
 @Table(name = "profile")
 @Data
 @RequiredArgsConstructor
+@Builder
+@AllArgsConstructor
 public class ProfileEntity implements Serializable {
 
     @Id
@@ -23,7 +27,9 @@ public class ProfileEntity implements Serializable {
     private UserEntity user;
 
     private String name;
-    private String profile_image;
+    private String firstLastName;
+    private String secondLastName;
+    private String profileImage;
     private String bio;
     private String academic_degree;
 
