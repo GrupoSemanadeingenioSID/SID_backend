@@ -1,10 +1,14 @@
 package com.sid.portal_web.error;
 
+import lombok.Getter;
+
+@Getter
 public class UserException extends RuntimeException {
 
     private final String messageError;
 
-    public UserException(String messageError) {
+    private UserException(String messageError) {
+        super(messageError);
         this.messageError = messageError;
     }
 

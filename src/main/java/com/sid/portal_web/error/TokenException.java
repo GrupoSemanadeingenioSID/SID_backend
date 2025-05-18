@@ -7,7 +7,7 @@ public class TokenException extends RuntimeException {
 
     private final String errorMessage;
 
-    public TokenException(final String message) {
+    private TokenException(final String message) {
         super(message);
         this.errorMessage = message;
     }
