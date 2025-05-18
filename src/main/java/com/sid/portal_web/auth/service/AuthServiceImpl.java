@@ -7,6 +7,7 @@ import com.sid.portal_web.auth.service.registerBuilder.DirectorRegister;
 import com.sid.portal_web.dto.request.LoginRequest;
 import com.sid.portal_web.dto.request.RegisterRequest;
 import com.sid.portal_web.dto.response.AuthResponse;
+import com.sid.portal_web.error.LoginRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
                         loginRequest.getEmail(),
                         loginRequest.getPassword())
         );
-         UserDetails userDetails = (UserDetails) authentication.getPrincipal(); // mirar eso
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal(); // mirar eso
 
         String token = jwtService.getToken(userDetails);
         return AuthResponse.builder()
@@ -41,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse register(RegisterRequest registerRequest) {
-        System.out.println("Register: "+registerRequest);
+        System.out.println("Register: " + registerRequest);
         directorRegister.register(registerRequest);
         String email = directorRegister.getUser().getEmail();
 

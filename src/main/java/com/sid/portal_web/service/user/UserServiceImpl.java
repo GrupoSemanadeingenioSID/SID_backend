@@ -23,8 +23,6 @@ public class UserServiceImpl implements UserService {
         if (this.existsByInstitutionalEmail(entity.getEmail())) {
             throw UserException.userAlreadyExists();
         }
-
-        // Ahora debemos hacer un servicio extra que es el Email de confrmacíon
         return repository.save(entity);
     }
 

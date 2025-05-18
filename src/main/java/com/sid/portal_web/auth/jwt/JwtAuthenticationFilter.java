@@ -35,13 +35,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain)
             throws ServletException, IOException {
 
-        // En primera obtenemos el token:
         try {
             final String token = getTokenFromRequest(request).orElseThrow(TokenException::emptyTokenException);
             final String email;
 
             if (token.equals("DOFILTER")) {
-                doFilter(request, response, filterChain);
+                filterChain.doFilter(request, response);
                 return;
             }
 

@@ -9,8 +9,8 @@ class UserEntityTest {
     @Test
     void getId() {
         UserEntity user = new UserEntity();
-        user.setId(42);
-        assertEquals(42, user.getId());
+        user.setUserId(42);
+        assertEquals(42, user.getUserId());
     }
 
     @Test
