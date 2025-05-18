@@ -6,6 +6,6 @@ import com.sid.portal_web.entity.UserEntity;
 public interface UserService {
 
     UserEntity save(User user);
-    UserEntity saveUpdate(UserEntity user);
+    UserEntity update(UserEntity user);
     boolean existsByInstitutionalEmail(String email);
 }

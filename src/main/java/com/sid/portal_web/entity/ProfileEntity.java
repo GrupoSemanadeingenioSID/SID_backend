@@ -33,4 +33,13 @@ public class ProfileEntity implements Serializable {
     private String bio;
     private String academic_degree;
 
+    @Override
+    public String toString() {
+        return "ProfileEntity{" +
+               "name='" + name + '\'' +
+               ", firstLastName='" + firstLastName + '\'' +
+               // Excluye el user o solo muestra el ID
+               ", userId=" + (user != null ? user.getUserId() : null) +
+               '}';
+    }
 }

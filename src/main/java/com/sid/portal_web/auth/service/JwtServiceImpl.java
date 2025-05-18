@@ -50,7 +50,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public boolean isExpired(String token, UserDetails userDetails) {
         final String email = getEmailFromToken(token);
-        return (email.equals(userDetails.getUsername()) && !isExpired(token));
+        return (email.equals(userDetails.getUsername()) && isExpired(token));
     }
 
     @Override
@@ -104,11 +104,11 @@ public class JwtServiceImpl implements JwtService {
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
-    private Date getExpiration(String token) {
+    Date getExpiration(String token) {
         return getClaim(token, Claims::getExpiration).orElse(null);
     }
 
-    private Boolean isExpired(String token) {
+    Boolean isExpired(String token) {
         return getExpiration(token).before(new Date());
     }
 }

@@ -9,27 +9,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
-        ErrorResponse errorResponse = ErrorResponse.builder()
+    // apartado para usuarios:
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExist(UserException ex) {
+        ErrorResponse err = ErrorResponse.builder()
+                .status(HttpStatus.CONFLICT.value())
                 .message(ex.getMessage())
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .build();
 
-        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    // Para validaciones de datos
-    @ExceptionHandler(org.springframework.web.bind.MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorResponse> handleValidationExceptions(
-            org.springframework.web.bind.MethodArgumentNotValidException ex) {
-
-        ErrorResponse errorResponse = ErrorResponse.builder()
-                .message("Validation error")
-                .status(HttpStatus.BAD_REQUEST.value())
-                .build();
-
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(err, HttpStatus.CONFLICT);
     }
 
     // LoginRequestException

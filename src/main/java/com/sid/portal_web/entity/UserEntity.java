@@ -27,11 +27,22 @@ public class UserEntity implements Serializable {
     private Integer userId;
 
     private String email;
+    @Column(name = "institutional_email")
     private String institutionalEmail;
     private String password;
     private boolean active;
 
     @OneToOne(mappedBy = "user")//, cascade = CascadeType.ALL)
     private ProfileEntity profile;
+
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+               "userId=" + userId +
+               ", email='" + email + '\'' +
+               ", institutionalEmail='" + institutionalEmail + '\'' +
+               '}';
+    }
 
 }

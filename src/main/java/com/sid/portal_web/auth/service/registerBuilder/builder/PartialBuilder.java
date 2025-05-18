@@ -41,13 +41,14 @@ public class PartialBuilder extends RegisterBuilder {
     @Override
     @Transactional
     public RegisterBuilder buildUser() {
-        String email = this.getSidEmail();
         if (registerRequest.getInstitutionalEmail() == null) {
             throw EmailException.blankEducationalEmailAddressException();
         }
+        String email = this.getSidEmail();
 
         User user = new User(null, email, registerRequest.getPassword(),
                 registerRequest.getInstitutionalEmail(), true); // cuando se inicia será true
+
         this.savedUser = userService.save(user);
         return this;
     }

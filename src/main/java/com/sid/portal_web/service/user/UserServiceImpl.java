@@ -18,17 +18,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity save(User userCore) {
-        UserEntity entity = userMapper.domainToEntity(userCore);
-
-        if (this.existsByInstitutionalEmail(entity.getEmail())) {
+        if (this.existsByInstitutionalEmail(userCore.institutionalEmail())) {
             throw UserException.userAlreadyExists();
         }
+        UserEntity entity = userMapper.domainToEntity(userCore);
+        entity.setActive(true);
         return repository.save(entity);
     }
 
-    // Aqui lo cambiaremos para dividir cuando se guarda de cuand
+    // Aqui lo cambiaremos para dividir cuando se guarda de cuando se hace un update
     @Override
-    public UserEntity saveUpdate(UserEntity user) {
+    public UserEntity update(UserEntity user) {
         return null;
     }
 
