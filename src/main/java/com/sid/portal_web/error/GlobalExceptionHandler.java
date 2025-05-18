@@ -1,18 +1,15 @@
 package com.sid.portal_web.error;
 
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
-
-
-
 
 
     @lombok.Data
     @lombok.Builder
-    static class ErrorResponse {
+    private static class ErrorResponse {
         private String message;
         private int status;
     }
