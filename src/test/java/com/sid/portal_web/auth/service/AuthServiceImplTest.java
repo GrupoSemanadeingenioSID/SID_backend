@@ -3,6 +3,7 @@ package com.sid.portal_web.auth.service;
 import com.sid.portal_web.auth.service.interfaces.JwtService;
 import com.sid.portal_web.auth.service.registerBuilder.DirectorRegister;
 import com.sid.portal_web.dto.request.LoginRequest;
+import com.sid.portal_web.dto.request.RefreshRequest;
 import com.sid.portal_web.dto.request.RegisterRequest;
 import com.sid.portal_web.dto.response.AuthResponse;
 import com.sid.portal_web.entity.UserEntity;
@@ -105,5 +106,29 @@ class AuthServiceImplTest {
         verify(userDetailsService).loadUserByUsername(email);
         verify(jwtService).getToken(userDetails);
         verify(jwtService).getRefreshToken(userDetails);
+    }
+
+    @Test
+    @DisplayName("Debería devolver null cuando el refresh token no es válido")
+    void refreshToken_shouldReturnNull_whenRefreshTokenIsInvalid() {
+        // Arrange
+        String invalidRefreshToken = "invalid-refresh-token";
+        RefreshRequest refreshRequest = new RefreshRequest(invalidRefreshToken);
+
+        when(jwtService.getEmailFromToken(invalidRefreshToken)).thenReturn(email);
+        when(userDetailsService.loadUserByUsername(email)).thenReturn(userDetails);
+        when(jwtService.isRefreshTokenValid(invalidRefreshToken, userDetails)).thenReturn(false);
+
+        // Act
+        AuthResponse response = authService.refreshToken(refreshRequest);
+
+        // Assert
+        assertNull(response);
+
+        verify(jwtService).getEmailFromToken(invalidRefreshToken);
+        verify(userDetailsService).loadUserByUsername(email);
+        verify(jwtService).isRefreshTokenValid(invalidRefreshToken, userDetails);
+        verify(jwtService, never()).getToken(any());
+        verify(jwtService, never()).getRefreshToken(any());
     }
 }

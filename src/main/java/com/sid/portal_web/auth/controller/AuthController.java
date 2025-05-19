@@ -3,6 +3,7 @@ package com.sid.portal_web.auth.controller;
 
 import com.sid.portal_web.auth.service.interfaces.AuthService;
 import com.sid.portal_web.dto.request.LoginRequest;
+import com.sid.portal_web.dto.request.RefreshRequest;
 import com.sid.portal_web.dto.request.RegisterRequest;
 import com.sid.portal_web.dto.response.AuthResponse;
 import com.sid.portal_web.error.LoginRequestException;
@@ -46,6 +47,14 @@ public class AuthController {
 
         return ResponseEntity.ok(authService.register(request));
     }
+
+
+    @PostMapping("/refresh")
+    public ResponseEntity<AuthResponse> refresh(@Valid @RequestBody RefreshRequest request) {
+
+        return ResponseEntity.ok(authService.refreshToken(request));
+    }
+
 
 
     private Map<Predicate<RegisterRequest>, String> validateRegister(RegisterRequest request) {

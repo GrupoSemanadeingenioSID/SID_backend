@@ -29,4 +29,7 @@ public class TokenException extends RuntimeException {
         return new TokenException("Expired Token");
     }
 
+    public static TokenException refreshTokenException(final String message) {
+        return new TokenException("Refresh Token " + message);
+    }
 }

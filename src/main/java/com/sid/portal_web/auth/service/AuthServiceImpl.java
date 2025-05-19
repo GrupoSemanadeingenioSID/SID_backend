@@ -5,6 +5,7 @@ import com.sid.portal_web.auth.service.interfaces.AuthService;
 import com.sid.portal_web.auth.service.interfaces.JwtService;
 import com.sid.portal_web.auth.service.registerBuilder.DirectorRegister;
 import com.sid.portal_web.dto.request.LoginRequest;
+import com.sid.portal_web.dto.request.RefreshRequest;
 import com.sid.portal_web.dto.request.RegisterRequest;
 import com.sid.portal_web.dto.response.AuthResponse;
 import com.sid.portal_web.error.LoginRequestException;
@@ -52,5 +53,22 @@ public class AuthServiceImpl implements AuthService {
                 .token(jwtService.getToken(userDetails))
                 .refreshToken(jwtService.getRefreshToken(userDetails))
                 .build();
+    }
+
+    @Override
+    public AuthResponse refreshToken(RefreshRequest refreshRequest) {
+        String refreshToken = refreshRequest.getRefreshToken();
+        String email = jwtService.getEmailFromToken(refreshToken);
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+        if (jwtService.isRefreshTokenValid(refreshToken, userDetails)){
+            String newAccess =  jwtService.getToken(userDetails);
+            String newRefresh = jwtService.getRefreshToken(userDetails);
+            return AuthResponse.builder()
+                    .token(newAccess)
+                    .refreshToken(newRefresh)
+                    .build();
+        }
+        return null;
     }
 }
