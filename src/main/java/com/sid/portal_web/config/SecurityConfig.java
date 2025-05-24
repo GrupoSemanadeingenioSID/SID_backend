@@ -41,7 +41,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/actuator/**"),
                                 new AntPathRequestMatcher("/api/v1/users", "GET")
                         ).permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()//authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)

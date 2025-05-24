@@ -1,17 +1,30 @@
 package com.sid.portal_web.controller.team;
 
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
+import com.sid.portal_web.auth.jwt.JwtAuthenticationFilter;
+import com.sid.portal_web.auth.service.interfaces.JwtService;
+import com.sid.portal_web.dto.response.TeamBaseResponse;
+import com.sid.portal_web.service.team.TeamService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.util.Arrays;
+import java.util.List;
 
 
 @WebMvcTest(TeamV1Controller.class)
@@ -20,9 +33,36 @@ class TeamV1ControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+
+    @MockitoBean  // <
+    private TeamService teamService;
+
+//    @MockitoBean
+//    private JwtService jwtService;  // MOCKEAR el servicio que falta
+//
+//    @MockitoBean
+//    private JwtAuthenticationFilter jwtAuthenticationFilter;
+//
+
     @DisplayName("Debería retornar todos los equipos paginados correctamente")
     @Test
     public void getTeams() throws Exception {
+        // Mock del resultado del servicio
+        List<TeamBaseResponse> teams = Arrays.asList(
+                TeamBaseResponse.builder()
+                        .id(1)
+                        .name("Team 1")
+                        .description("Description 1")
+                        .active(true)
+                        .leader("Leader 1")
+                        .build()
+        );
+
+        Page<TeamBaseResponse> page = new PageImpl<>(teams);
+
+        // Configurar el comportamiento del mock
+        when(teamService.findAll(any(Pageable.class))).thenReturn(page);
+
         mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/teams?page=0&size=10&sort=formation_date,desc"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content").isArray())
@@ -34,6 +74,7 @@ class TeamV1ControllerTest {
                 .andExpect(jsonPath("$.content[0].active").isBoolean())
                 .andExpect(jsonPath("$.content[0].leader").isString());
     }
+
 
     @DisplayName("Debe retornar un equipo específico con sus miembros")
     @Test
