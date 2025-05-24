@@ -2,7 +2,7 @@ package com.sid.portal_web.controller.team;
 
 import com.sid.portal_web.auth.jwt.JwtAuthenticationFilter;
 import com.sid.portal_web.auth.service.interfaces.JwtService;
-import com.sid.portal_web.dto.response.TeamBaseResponse;
+import com.sid.portal_web.dto.response.TeamResponse;
 import com.sid.portal_web.service.team.TeamService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,14 +55,14 @@ class TeamV1ControllerTest {
     @Test
     void getTeams_shouldReturnPageOfTeams() throws Exception {
         // 1. Crear datos REALES que coincidan con tu endpoint
-        List<TeamBaseResponse> teams = List.of(
-                new TeamBaseResponse(1, "Equipo Frontend", "Equipo especializado en desarrollo frontend", true, "Juan Carlos"),
-                new TeamBaseResponse(2, "Equipo Backend", "Equipo especializado en desarrollo backend", true, "Carlos Alberto"),
-                new TeamBaseResponse(3, "Equipo Mobile", "Equipo de desarrollo móvil", true, "Juan Carlos")
+        List<TeamResponse> teams = List.of(
+                new TeamResponse(1, "Equipo Frontend", "Equipo especializado en desarrollo frontend", true, "Juan Carlos",null),
+                new TeamResponse(2, "Equipo Backend", "Equipo especializado en desarrollo backend", true, "Carlos Alberto",null),
+                new TeamResponse(3, "Equipo Mobile", "Equipo de desarrollo móvil", true, "Juan Carlos",null)
         );
 
         // 2. Crear el Page EXACTO como lo devuelve tu endpoint
-        Page<TeamBaseResponse> mockPage = new PageImpl<>(
+        Page<TeamResponse> mockPage = new PageImpl<>(
                 teams,
                 PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "formation_date")),
                 3L
@@ -88,7 +88,7 @@ class TeamV1ControllerTest {
     void getTeams_shouldReturnEmptyPageWhenNoTeams() throws Exception {
         // Arrange
         Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "formation_date"));
-        Page<TeamBaseResponse> emptyPage = new PageImpl<>(Collections.emptyList(), pageable, 0);
+        Page<TeamResponse> emptyPage = new PageImpl<>(Collections.emptyList(), pageable, 0);
 
         when(teamService.findAll(any(Pageable.class))).thenReturn(emptyPage);
 

@@ -1,4 +1,4 @@
-package com.sid.portal_web.dto.response;
+package com.sid.portal_web.core.team;
 
 
 import lombok.AllArgsConstructor;
@@ -7,14 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TeamBaseResponse {
+@Builder
+public class TeamMember {
     private Integer id;
     private String name;
-    private String description;
-    private Boolean active;
-    private String leader;
-
+    private String role;
+    private String title;
 }

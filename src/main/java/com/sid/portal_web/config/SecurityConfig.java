@@ -36,6 +36,7 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/activities", "GET"),
                                 new AntPathRequestMatcher("/api/v1/projects", "GET"),
                                 new AntPathRequestMatcher("/api/v1/teams", "GET"),
+                                new AntPathRequestMatcher("/api/v1/teams/**", "GET"),
                                 new AntPathRequestMatcher("/api/v1/news", "GET"),
                                 new AntPathRequestMatcher("/api/v1/foundations", "GET"),
                                 new AntPathRequestMatcher("/actuator/**"),
