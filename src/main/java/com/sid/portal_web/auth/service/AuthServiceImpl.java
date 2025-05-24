@@ -43,7 +43,6 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse register(RegisterRequest registerRequest) {
-        System.out.println("Register: " + registerRequest);
         directorRegister.register(registerRequest);
         String email = directorRegister.getUser().getEmail();
 
