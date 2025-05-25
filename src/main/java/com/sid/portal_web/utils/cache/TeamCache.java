@@ -22,22 +22,39 @@ public class TeamCache {
     public void cacheSearchList(List<Team> teams) {
         teams.forEach(team -> {
             if (team instanceof TeamProxy proxy) {
-                teamCache.put(proxy.getId(), proxy);
+                // Solo cachear si no existe ya
+                teamCache.asMap().putIfAbsent(proxy.getId(), proxy);
             }
         });
     }
 
     public Team getTeam(int id, Supplier<List<TeamMember>> membersSupplier) {
-        TeamProxy team = teamCache.getIfPresent(id);
-        if (team != null) {
-            if (!team.isMembersLoaded()) {
-                team.setTeam(membersSupplier);
-               // team.getMembers();
+        TeamProxy cachedTeam = teamCache.getIfPresent(id);
+
+        if (cachedTeam != null) {
+            // Si está en cache, configurar el supplier para lazy loading
+            if (!cachedTeam.isMembersLoaded()) {
+                cachedTeam.setTeam(membersSupplier);
             }
-            teamCache.asMap().replace(team.getId(), team); // reemplazamos
-            return team;
+            return cachedTeam;
         }
 
+        // No está en cache, devolver null para que el servicio maneje el fallback
         return null;
+    }
+
+    // caché indivudal
+    public void cacheTeam(TeamProxy team) {
+        if (team != null) {
+            teamCache.put(team.getId(), team);
+        }
+    }
+    public void invalidateTeam(Integer id) {
+        teamCache.invalidate(id);
+    }
+
+    //estadisticas para debuggin
+    public String getCacheStats() {
+        return teamCache.stats().toString();
     }
 }

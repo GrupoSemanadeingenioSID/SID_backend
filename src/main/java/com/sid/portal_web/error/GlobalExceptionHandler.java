@@ -9,6 +9,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    // Apartado para los Team:
+    @ExceptionHandler(TeamException.class)
+    public ResponseEntity<ErrorResponse> handleTeamNotFound(TeamException ex) {
+        ErrorResponse err = ErrorResponse.builder()
+                .status(ex.getHttpStatus().value())
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(err, ex.getHttpStatus());
+    }
+
+
     // apartado para usuarios:
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ErrorResponse> handleUserAlreadyExist(UserException ex) {
@@ -32,7 +43,7 @@ public class GlobalExceptionHandler {
 
     // RegisterRequestException
     @ExceptionHandler(RegisterRequestException.class)
-    public ResponseEntity<ErrorResponse> hanlderRegisterRequestException(RegisterRequestException ex) {
+    public ResponseEntity<ErrorResponse> handlerRegisterRequestException(RegisterRequestException ex) {
         ErrorResponse err = ErrorResponse.builder()
                 .message(ex.getMessage())
                 .status(HttpStatus.BAD_REQUEST.value()) // 400
