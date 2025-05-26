@@ -14,8 +14,7 @@ public record Activities(
         Integer totalHours,
         LocalDate startDate,
         LocalDate completionDate,
-        String manager,
-        Set<MemberParticipation> activityParticipation
+        String manager
 
 )
     {

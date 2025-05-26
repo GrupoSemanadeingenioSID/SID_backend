@@ -20,7 +20,7 @@ public class ActivityResponse {
     private String description;
     private ActivityEntity.Priority priority;
     private ActivityEntity.Status status;
-    private Integer total_hours;
+    private Integer totalHours;
     private LocalDate startDate;
     private LocalDate completionDate;
     private String manager;
