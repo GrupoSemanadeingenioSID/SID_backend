@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 public class UserEntity implements Serializable {
     @Serial
