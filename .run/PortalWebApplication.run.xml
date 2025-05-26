@@ -1,0 +1,14 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="PortalWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <envs>
+      <env name="DB_PASSWORD" value="1407" />
+      <env name="DB_URL" value="$URL$" />
+      <env name="DB_USERNAME" value="postgres" />
+    </envs>
+    <module name="portal-web" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.sid.portal_web.PortalWebApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
