@@ -23,12 +23,13 @@ public class TeamMemberEntity implements Serializable {
     @Column(name = "team_member_id")
     private Integer teamMemberId;
 
-    private Date joinDate; // fecha de llegada
+//    @Column(name = "join_date")
+    private Date joindDate; // fecha de llegada
     private Date endDate; // fecha de salida
-    private Integer roleId; // rol dentro del equipo -> El que hace algo xd
+    private Integer rolId; // rol dentro del equipo -> El que hace algo xd
     private Integer teamId; // equipo al cual pertenece el miembro
     private Integer developmentMemberId; // mapeo con el miembro del development
-    private Integer titleId; // titulo dentro del equipo -> Lider / miembro / colider
+    private Integer teamTitleId; // titulo dentro del equipo -> Lider / miembro / colider
 
 
 }

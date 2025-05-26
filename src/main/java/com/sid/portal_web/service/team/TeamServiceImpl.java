@@ -95,12 +95,12 @@ public class TeamServiceImpl implements TeamService {
             if (request.getMembers() != null && !request.getMembers().isEmpty()) {
                 List<TeamMemberEntity> teamMembers = request.getMembers().stream()
                         .map(member -> TeamMemberEntity.builder()
-                                .joinDate(member.getJoin_date())
+                                .joindDate(member.getJoin_date())
                                 .endDate(member.getEnd_date())
-                                .roleId(member.getRol_id())
+                                .rolId(member.getRol_id())
                                 .teamId(savedTeam.getTeamId())
                                 .developmentMemberId(member.getDevelopment_member_id())
-                                .titleId(member.getTitle_id())
+                                .teamTitleId(member.getTitle_id())
                                 .build())
                         .toList();
 
