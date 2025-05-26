@@ -98,12 +98,6 @@
     <!--	 DEPENDENCIAS  -->
 
     <dependencies>
-        <!--        Autenticacion OAuth-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
-        </dependency>
-        <!--        Estado del servidor-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
