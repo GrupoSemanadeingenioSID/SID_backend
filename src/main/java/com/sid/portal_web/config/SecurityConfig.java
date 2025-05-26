@@ -40,7 +40,9 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/news", "GET"),
                                 new AntPathRequestMatcher("/api/v1/foundations", "GET"),
                                 new AntPathRequestMatcher("/actuator/**"),
-                                new AntPathRequestMatcher("/api/v1/users", "GET")
+                                new AntPathRequestMatcher("/api/v1/users", "GET"),
+                                // momentaneamente el cache
+                                new AntPathRequestMatcher("/api/v1/admin/cache/**", "GET")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

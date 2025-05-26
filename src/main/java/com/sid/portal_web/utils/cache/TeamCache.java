@@ -5,13 +5,16 @@ import com.github.benmanes.caffeine.cache.Caffeine;
 import com.sid.portal_web.core.team.Team;
 import com.sid.portal_web.core.team.TeamMember;
 import com.sid.portal_web.core.team.TeamProxy;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 @Component
+@Slf4j
 public class TeamCache {
 
     private final Cache<Integer, TeamProxy> teamCache = Caffeine.newBuilder()
@@ -56,5 +59,26 @@ public class TeamCache {
     //estadisticas para debuggin
     public String getCacheStats() {
         return teamCache.stats().toString();
+    }
+
+    public long getCacheSize() {
+        return teamCache.estimatedSize();
+    }
+
+    public void clearCache() {
+        teamCache.invalidateAll();
+        log.info("Team cache cleared manually");
+    }
+
+    public Map<String, Object> getDetailedStats() {
+        var stats = teamCache.stats();
+        return Map.of(
+                "hitCount", stats.hitCount(),
+                "missCount", stats.missCount(),
+                "hitRate", stats.hitRate(),
+                "requestCount", stats.requestCount(),
+                "cacheSize", teamCache.estimatedSize(),
+                "evictionCount", stats.evictionCount()
+        );
     }
 }
