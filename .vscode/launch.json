@@ -1,0 +1,14 @@
+{
+     "configurations": [
+          {
+               "type": "java",
+               "name": "Spring Boot-PortalWebApplication<portal-web>",
+               "request": "launch",
+               "cwd": "${workspaceFolder}",
+               "mainClass": "com.sid.portal_web.PortalWebApplication",
+               "projectName": "portal-web",
+               "args": "",
+               "envFile": "${workspaceFolder}/.env"
+          }
+     ]
+}
