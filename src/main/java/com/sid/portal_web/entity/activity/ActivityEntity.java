@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -46,16 +45,23 @@ public class ActivityEntity {
     private LocalDate completionDate;
 
     public enum Priority {
-        HIGH, MEDIUM, LOW
+        ALTA,
+        MEDIA,
+        BAJA
     }
 
     public enum Status {
-        PENDING, IN_PROGRESS, COMPLETED, CANCELLED
+        ACTIVA,
+        ESPERA,
+        COMPLETADA,
+        CANCELADA
     }
 
     @OneToMany(mappedBy = "activity")
-    private Set<ActivityDevEntity> activityDev = new HashSet<>();
+    private Set<ActivityDevEntity> activityDev;
 
     @OneToMany(mappedBy = "activity")
-    private Set<ActivityParticipationEntity> activityParticipation = new HashSet<>();
+    private Set<ActivityParticipationEntity> activityParticipation;
+
+
 }

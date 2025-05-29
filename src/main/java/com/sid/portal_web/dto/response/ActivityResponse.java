@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Builder
 public class ActivityResponse {
 
-    private Integer id;
+    private Integer activityId;
     private String title;
     private String description;
     private ActivityEntity.Priority priority;

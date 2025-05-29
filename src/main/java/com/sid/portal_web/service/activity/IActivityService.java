@@ -6,6 +6,13 @@ import java.util.List;
 
 public interface IActivityService {
 
-    List<ActivityResponse> findAll();
+
+    // Método para obtener todas las actividades con manager
+    List<ActivityResponse> getAllActivities();
+
+    // Método para obtener una actividad específica
+    ActivityResponse getActivityById(Integer activityId);
+
+
 
 }

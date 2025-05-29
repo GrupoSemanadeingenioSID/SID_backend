@@ -6,6 +6,7 @@ import com.sid.portal_web.service.activity.IActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,10 +25,15 @@ public class ActivityV1Controller {
 
 
     @GetMapping
-    public ResponseEntity<List<ActivityResponse>> getActivities() {
+    public ResponseEntity<List<ActivityResponse>> getAllActivities() {
 
-        return ResponseEntity.ok(activityService.findAll());
+        return ResponseEntity.ok(activityService.getAllActivities());
 
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ActivityResponse> getActivityById(@PathVariable Integer id) {
+        return ResponseEntity.ok(activityService.getActivityById(id));
     }
 
 }

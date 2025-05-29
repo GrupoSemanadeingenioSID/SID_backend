@@ -52,7 +52,7 @@ public record Activities(
             }
 
             // Validación de estado coherente con fechas
-            if (status == ActivityEntity.Status.COMPLETED && completionDate == null) {
+            if (status == ActivityEntity.Status.COMPLETADA && completionDate == null) {
                 throw new IllegalArgumentException("Completed activities must have a completion date");
             }
 

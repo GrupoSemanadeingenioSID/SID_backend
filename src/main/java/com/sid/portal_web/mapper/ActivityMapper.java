@@ -4,45 +4,37 @@ import com.sid.portal_web.core.Activities;
 import com.sid.portal_web.dto.response.ActivityResponse;
 import com.sid.portal_web.entity.activity.ActivityEntity;
 import com.sid.portal_web.entity.activity.ActivityParticipationEntity;
+import com.sid.portal_web.entity.activity.projection.ActivityWithManagerProjection;
 
 import java.util.Set;
 
-public interface ActivityMapper {
+public class ActivityMapper {
 
-    static Activities entityToCore(ActivityEntity entity){
-        return new Activities(
-                entity.getTitle(),
-                entity.getDescription(),
-                entity.getPriority(),
-                entity.getStatus(),
-                entity.getTotalHours(),
-                entity.getStartDate(),
-                entity.getCompletionDate(),
-                extractPrimaryManagerName(entity.getActivityParticipation())
-        );
-    }
-
-    static ActivityResponse coreToResponse(Activities core){
+    // Método para mapear desde la proyección
+    public static ActivityResponse projectionToResponse(ActivityWithManagerProjection projection) {
         return ActivityResponse.builder()
-                .title(core.title())
-                .description(core.description())
-                .priority(core.priority())
-                .status(core.status())
-                .totalHours(core.totalHours())
-                .startDate(core.startDate())
-                .completionDate(core.completionDate())
-                .manager(core.manager())
+                .title(projection.getTitle())
+                .description(projection.getDescription())
+                .priority(projection.getPriority())
+                .status(projection.getStatus())
+                .totalHours(projection.getTotalHours())
+                .startDate(projection.getStartDate())
+                .completionDate(projection.getCompletionDate())
+                .manager(projection.getManagerName())
                 .build();
     }
 
-
-    // Helper para extraer el manager principal
-    private static String extractPrimaryManagerName(Set<ActivityParticipationEntity> participations) {
-        return participations.stream()
-                .filter(p -> "Lider".equals(p.getTitle().getDescription()))
-                .findFirst()
-                .map(p -> p.getTitle().getDescription())
-                .orElse(null);
+    // Método para mapear desde la entidad + manager
+    public static ActivityResponse entityToResponse(ActivityEntity entity, String managerName) {
+        return ActivityResponse.builder()
+                .title(entity.getTitle())
+                .description(entity.getDescription())
+                .priority(entity.getPriority())
+                .status(entity.getStatus())
+                .totalHours(entity.getTotalHours())
+                .startDate(entity.getStartDate())
+                .completionDate(entity.getCompletionDate())
+                .manager(managerName)
+                .build();
     }
-
 }
