@@ -7,6 +7,8 @@ import com.sid.portal_web.repository.activity.ActivityRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -21,25 +23,15 @@ public class ActivityServiceImpl implements IActivityService {
 
 
     @Transactional
-    public List<ActivityResponse> getAllActivities() {
+    public Page<ActivityResponse> getAllActivities(Pageable pageable) {
 
-
-        return activityRepository.findAllActivitiesWithManager()
-                .stream()
-                .map(this::mapToResponse)
-                .collect(Collectors.toList());
+        return activityRepository.findAllActivitiesWithManager(pageable)
+                .map(this::mapToResponse);
     }
 
     @Transactional
     public ActivityResponse getActivityById(Integer activityId) {
-        ActivityWithManagerProjection projection = activityRepository
-                .findAllActivitiesWithManager()
-                .stream()
-                .filter(a -> a.getActivityId().equals(activityId))
-                .findFirst()
-                .orElseThrow(() -> new EntityNotFoundException("Activity not found"));
-
-        return mapToResponse(projection);
+        return null;
     }
 
     private ActivityResponse mapToResponse(ActivityWithManagerProjection projection) {

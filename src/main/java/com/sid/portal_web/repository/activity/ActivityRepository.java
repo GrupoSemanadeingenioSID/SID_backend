@@ -3,6 +3,8 @@ package com.sid.portal_web.repository.activity;
 import com.sid.portal_web.core.Activities;
 import com.sid.portal_web.entity.activity.ActivityEntity;
 import com.sid.portal_web.entity.activity.projection.ActivityWithManagerProjection;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -50,5 +52,5 @@ public interface ActivityRepository extends JpaRepository<ActivityEntity, Intege
                 
             ) as managerName
             FROM activities a""", nativeQuery = true)
-    List<ActivityWithManagerProjection> findAllActivitiesWithManager();
+    Page<ActivityWithManagerProjection> findAllActivitiesWithManager(Pageable pageable);
 }
