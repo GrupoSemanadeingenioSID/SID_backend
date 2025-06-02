@@ -1,17 +1,11 @@
 package com.sid.portal_web.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-
-import java.io.Serial;
 import java.io.Serializable;
-
 
 
 @Entity
@@ -22,6 +16,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class FoundationEntity implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "foundation_id")
     private Integer id;
 

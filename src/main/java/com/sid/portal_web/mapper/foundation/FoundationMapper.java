@@ -4,7 +4,6 @@ package com.sid.portal_web.mapper.foundation;
 import com.sid.portal_web.core.Foundation;
 import com.sid.portal_web.dto.response.FoundationResponse;
 import com.sid.portal_web.entity.FoundationEntity;
-import com.sid.portal_web.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

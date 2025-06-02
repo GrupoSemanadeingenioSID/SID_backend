@@ -1,0 +1,10 @@
+package com.sid.portal_web.repository.foundation;
+
+import com.sid.portal_web.entity.FoundSocialMediaEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface FoundSocialMediaRepository extends JpaRepository<FoundSocialMediaEntity,Long> {
+    List<FoundSocialMediaEntity> findByFoundations_Id(Integer id);
+}
