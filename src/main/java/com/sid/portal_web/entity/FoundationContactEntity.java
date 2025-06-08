@@ -31,6 +31,11 @@ public class FoundationContactEntity {
 
     private String location;
 
-    @OneToMany(mappedBy = "foundations", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @MapsId
+    @JoinColumn(name = "foundation_id")
+    private FoundationEntity foundation;
+
+    @OneToMany(mappedBy = "foundationsContact", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FoundSocialMediaEntity> foundationSocial;
 }

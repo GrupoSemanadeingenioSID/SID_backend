@@ -13,4 +13,5 @@ import java.util.Optional;
 public interface FoundationService {
     Page<FoundationResponse> findAll(int page, int pageSize, String sortBy, boolean asc);
     Optional<FoundationContactResponse> findById(int id);
+    void deleteById(int id);
 }

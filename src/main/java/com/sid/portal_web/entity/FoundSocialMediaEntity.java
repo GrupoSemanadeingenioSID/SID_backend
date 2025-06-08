@@ -27,6 +27,6 @@
 
         @ManyToOne
         @JoinColumn(name = "foundation_id")
-        private FoundationContactEntity foundations;
+        private FoundationContactEntity foundationsContact;
     }
 

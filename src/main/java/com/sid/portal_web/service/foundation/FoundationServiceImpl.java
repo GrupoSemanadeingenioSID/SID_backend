@@ -74,4 +74,9 @@ public class FoundationServiceImpl implements FoundationService {
                             socialMediaFoundation);
                 });
     }
+
+    @Override
+    public void deleteById(int id) {
+        foundationContactRepository.deleteById(id);
+    }
 }

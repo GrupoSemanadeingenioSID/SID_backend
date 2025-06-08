@@ -35,5 +35,12 @@ public class FoundationV1Controller{
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    // Aqui hace falta la autenticacion con token
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteContact(@PathVariable int id) {
+        foundationService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
