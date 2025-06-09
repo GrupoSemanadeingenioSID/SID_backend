@@ -57,6 +57,7 @@ public class ActivityEntity {
         CANCELADA
     }
 
+
     @OneToMany(mappedBy = "activity")
     private Set<ActivityDevEntity> activityDev;
 

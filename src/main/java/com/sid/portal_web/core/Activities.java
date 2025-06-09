@@ -1,16 +1,17 @@
 package com.sid.portal_web.core;
 
-import com.sid.portal_web.entity.activity.ActivityEntity;
+import com.sid.portal_web.entity.activity.ActivityEntity.Priority;
+import com.sid.portal_web.entity.activity.ActivityEntity.Status;
 
-import java.util.Set;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public record Activities(
+        Integer activityId,
         String title,
         String description,
-        ActivityEntity.Priority priority,
-        ActivityEntity.Status status,
+        Priority priority,
+        Status status,
         Integer totalHours,
         LocalDate startDate,
         LocalDate completionDate,
@@ -18,11 +19,7 @@ public record Activities(
 
 )
     {
-        public record MemberParticipation(
-                String name,
-                Integer id
-                )
-        {}
+
 
         public Activities {
             // Validaciones básicas de campos obligatorios
@@ -52,7 +49,7 @@ public record Activities(
             }
 
             // Validación de estado coherente con fechas
-            if (status == ActivityEntity.Status.COMPLETADA && completionDate == null) {
+            if (status == Status.COMPLETADA && completionDate == null) {
                 throw new IllegalArgumentException("Completed activities must have a completion date");
             }
 
