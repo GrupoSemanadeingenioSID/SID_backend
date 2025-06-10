@@ -1,6 +1,7 @@
 package com.sid.portal_web.controller.activity;
 
 
+import com.sid.portal_web.dto.response.ActivityByIdResponse;
 import com.sid.portal_web.dto.response.ActivityResponse;
 import com.sid.portal_web.service.activity.IActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ActivityV1Controller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ActivityResponse> getActivityById(@PathVariable Integer id) {
+    public ResponseEntity<ActivityByIdResponse> getActivityById(@PathVariable Integer id) {
         return ResponseEntity.ok(activityService.getActivityById(id));
     }
 

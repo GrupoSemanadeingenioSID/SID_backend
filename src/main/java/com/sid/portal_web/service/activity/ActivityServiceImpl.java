@@ -1,9 +1,12 @@
 package com.sid.portal_web.service.activity;
 
 
+import com.sid.portal_web.dto.response.ActivityByIdResponse;
 import com.sid.portal_web.dto.response.ActivityResponse;
+import com.sid.portal_web.entity.activity.projection.ActivityByIdProjection;
 import com.sid.portal_web.mapper.ActivityMapper;
 import com.sid.portal_web.repository.activity.ActivityRepository;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Service;
 public class ActivityServiceImpl implements IActivityService {
 
     private final ActivityRepository activityRepository;
+    private final ActivityMapper activityMapper;
 
 
     @Transactional
@@ -28,9 +32,11 @@ public class ActivityServiceImpl implements IActivityService {
     }
 
     @Transactional
-    public ActivityResponse getActivityById(Integer activityId) {
-        return null;
+    public ActivityByIdResponse getActivityById(Integer activityId) {
+        ActivityByIdProjection projection = activityRepository
+                .findActivityById(activityId)
+                .orElseThrow(() -> new EntityNotFoundException("Activity not found"));
+
+        return activityMapper.projectionToResponse(projection);
     }
-
-
 }
