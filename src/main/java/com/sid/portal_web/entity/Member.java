@@ -33,7 +33,5 @@ public class Member {
     public void setUser(UserEntity user) {
      this.user = user;
     }
-    
-    // Getters y Setters
 }
 
