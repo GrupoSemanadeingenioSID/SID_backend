@@ -2,6 +2,13 @@
      "configurations": [
           {
                "type": "java",
+               "name": "NewsMapperTestManual",
+               "request": "launch",
+               "mainClass": "com.sid.portal_web.NewsMapperTestManual",
+               "projectName": "portal-web"
+          },
+          {
+               "type": "java",
                "name": "Spring Boot-PortalWebApplication<portal-web>",
                "request": "launch",
                "cwd": "${workspaceFolder}",

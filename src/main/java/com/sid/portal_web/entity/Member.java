@@ -1,37 +1,23 @@
 package com.sid.portal_web.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-
-//Vinculación de la clase con la tabla 'members'
 @Entity
 @Table(name = "members")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member {
 
-     //Automatizacion del ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
+    // Relación con UserEntity
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
-
-    public Long getId() {
-     return id;
-    }
-
-    public void setId(Long id) {
-     this.id = id;
-    }
-
-    public UserEntity getUser() {
-     return user;
-    }
-
-    public void setUser(UserEntity user) {
-     this.user = user;
-    }
 }
-

@@ -6,11 +6,10 @@ import java.util.List;
 
 @Data
 @Builder
-public class NewsRequest {
+public class NewsUpdateRequest {
     private String title;
     private String description;
     private String content;
     private String imageUrl;
-    private Long memberId;
     private List<String> tags;
 }

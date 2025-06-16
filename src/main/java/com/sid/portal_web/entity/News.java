@@ -34,12 +34,12 @@ public class News {
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    // 🎯 Relación con Member (autor de la noticia)
+    //Relación con Member (autor de la noticia)
     @ManyToOne
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
-    // 🏷️ Relación muchos a muchos con NewsTopic (categorías)
+    //Relación muchos a muchos con NewsTopic (categorías)
     @ManyToMany
     @JoinTable(
         name = "news_category_assignement",
