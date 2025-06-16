@@ -2,6 +2,8 @@ package com.sid.portal_web.mapper.foundation;
 
 
 import com.sid.portal_web.core.Foundation;
+import com.sid.portal_web.core.FoundationContact;
+import com.sid.portal_web.dto.request.FoundationRequest;
 import com.sid.portal_web.dto.response.FoundationResponse;
 import com.sid.portal_web.entity.FoundationEntity;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,15 @@ public class FoundationMapper {
                 .description(foundation.description())
                 .logo_url(foundation.logo_url())
                 .build();
+    }
+
+    public Foundation requestToDomain(FoundationRequest foundationRequest){
+        return new Foundation(
+                null,
+                foundationRequest.getName(),
+                foundationRequest.getDescription(),
+                foundationRequest.getLogo_url()
+        );
     }
 
     public FoundationResponse domainToResponse(Foundation foundation){

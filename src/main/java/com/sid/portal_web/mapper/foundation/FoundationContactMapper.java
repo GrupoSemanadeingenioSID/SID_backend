@@ -1,11 +1,10 @@
 package com.sid.portal_web.mapper.foundation;
 
-import com.sid.portal_web.core.Foundation;
 import com.sid.portal_web.core.FoundationContact;
+import com.sid.portal_web.dto.request.FoundationRequest;
 import com.sid.portal_web.dto.response.FoundationContactResponse;
 import com.sid.portal_web.dto.response.SocialMediaResponse;
 import com.sid.portal_web.entity.FoundationContactEntity;
-import com.sid.portal_web.entity.FoundationEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,12 +17,43 @@ public class FoundationContactMapper {
         return new FoundationContact(
                 entity.getId(),
                 entity.getName(),
-                entity.getAddress(),
                 entity.getPhone(),
-                entity.getLocation(),
-                entity.getWebsite()
+                entity.getAddress(),
+                entity.getWebsite(),
+                entity.getLocation()
         );
     }
+
+    public void updateEntityFromDomain(FoundationContactEntity existing, FoundationContact updated) {
+        existing.setName(updated.name());
+        existing.setPhone(updated.phone());
+        existing.setAddress(updated.address());
+        existing.setWebsite(updated.website());
+        existing.setLocation(updated.location());
+    }
+
+    public FoundationContactEntity domainToEntity(FoundationContact foundationContact){
+        return FoundationContactEntity
+                .builder()
+                .name(foundationContact.name())
+                .address(foundationContact.address())
+                .phone(foundationContact.phone())
+                .location(foundationContact.location())
+                .website(foundationContact.website())
+                .build();
+    }
+
+    public FoundationContact requestToDomain(FoundationRequest foundationRequest){
+        return new FoundationContact(
+                null,
+                foundationRequest.getName(),
+                foundationRequest.getPhone(),
+                foundationRequest.getAddress(),
+                foundationRequest.getWebsite(),
+                foundationRequest.getLocation()
+        );
+    }
+
     public FoundationContactResponse domainToResponse(FoundationContact foundationContact, List<SocialMediaResponse> socialMedia){
         return FoundationContactResponse
                 .builder()
