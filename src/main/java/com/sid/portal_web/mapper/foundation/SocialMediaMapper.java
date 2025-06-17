@@ -2,7 +2,7 @@ package com.sid.portal_web.mapper.foundation;
 
 import com.sid.portal_web.core.SocialMedia;
 import com.sid.portal_web.dto.response.SocialMediaResponse;
-import com.sid.portal_web.entity.SocialMediaEntity;
+import com.sid.portal_web.entity.Foundation.SocialMediaEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

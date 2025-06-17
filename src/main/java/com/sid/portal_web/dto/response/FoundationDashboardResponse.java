@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FoundationContactResponse {
+public class FoundationDashboardResponse {
     private Integer id;
     private String name;
     private String description;
@@ -20,7 +20,6 @@ public class FoundationContactResponse {
     private String address;
     private String website;
     private String location;
-
     private List<SocialMediaResponse> socialMedia;
+    private Integer quantity_proyects;
 }
-

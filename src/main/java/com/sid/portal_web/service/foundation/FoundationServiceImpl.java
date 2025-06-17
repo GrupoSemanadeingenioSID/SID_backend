@@ -1,22 +1,12 @@
 package com.sid.portal_web.service.foundation;
+import com.sid.portal_web.core.*;
 
-import com.sid.portal_web.core.Foundation;
-import com.sid.portal_web.core.FoundationContact;
-import com.sid.portal_web.dto.request.FoundationRequest;
-import com.sid.portal_web.dto.response.FoundationContactResponse;
-import com.sid.portal_web.dto.response.FoundationResponse;
-import com.sid.portal_web.dto.response.SocialMediaResponse;
-import com.sid.portal_web.entity.FoundSocialMediaEntity;
-import com.sid.portal_web.entity.FoundationContactEntity;
-import com.sid.portal_web.entity.FoundationEntity;
-import com.sid.portal_web.entity.SocialMediaEntity;
-import com.sid.portal_web.mapper.foundation.FoundationContactMapper;
-import com.sid.portal_web.mapper.foundation.FoundationMapper;
-import com.sid.portal_web.mapper.foundation.SocialMediaMapper;
-import com.sid.portal_web.repository.foundation.FoundSocialMediaRepository;
-import com.sid.portal_web.repository.foundation.FoundationContactRepository;
-import com.sid.portal_web.repository.foundation.FoundationRepository;
-import com.sid.portal_web.repository.foundation.SocialMediaRepository;
+import com.sid.portal_web.dto.request.*;
+import com.sid.portal_web.dto.response.*;
+import com.sid.portal_web.entity.Foundation.*;
+import com.sid.portal_web.mapper.foundation.*;
+import com.sid.portal_web.repository.foundation.*;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -42,6 +32,7 @@ public class FoundationServiceImpl implements FoundationService {
     private final FoundationMapper foundationMapper;
     private final FoundationContactMapper foundationContactMapper;
     private final SocialMediaMapper socialMediaMapper;
+    private final FoundContactDashboardMapper foundContactDashboardMapper;
 
     @Override
     public Page<FoundationResponse> findAll(int page, int pageSize, String sortBy, boolean asc) {
@@ -61,9 +52,9 @@ public class FoundationServiceImpl implements FoundationService {
     public Optional<FoundationContactResponse> findById(int id) {
         return foundationContactRepository.findById(id)
                 .map(entity -> {
-                    // Extraer redes sociales
                     List<Integer> socialMediaIds = entity.getFoundationSocial().stream()
-                            .map(FoundSocialMediaEntity::getFoundSocialMediaId)
+                            .filter(s -> s.getFoundationsContact().getId().equals(id))
+                            .map(s -> Integer.parseInt(s.getSocialMedia().getId()))
                             .collect(Collectors.toList());
 
                     List<SocialMediaResponse> socialMediaFoundation = socialMediaRepository.findAllById(socialMediaIds).stream()
@@ -71,9 +62,45 @@ public class FoundationServiceImpl implements FoundationService {
                             .map(socialMediaMapper::domainToResponse)
                             .toList();
 
+                    FoundationEntity foundationEntity = foundationRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Fundación no encontrada con id " + id));
+
+                    Foundation foundation = foundationMapper.entityToDomain(foundationEntity);
+
                     return foundationContactMapper.domainToResponse(
                             foundationContactMapper.entityToDomain(entity),
-                            socialMediaFoundation);
+                            socialMediaFoundation,
+                            foundation
+                    );
+                });
+    }
+
+    @Override
+    public Optional<FoundationDashboardResponse> findByIdDashboard(int id) {
+        return foundationContactRepository.findById(id)
+                .map(entity -> {
+                    FoundationEntity foundationEntity = foundationRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("Fundación no encontrada con id " + id));
+
+                    FoundationContact foundationContact = foundationContactMapper.entityToDomain(entity);
+                    Foundation foundation = foundationMapper.entityToDomain(foundationEntity);
+
+                    List<Integer> socialMediaIds = entity.getFoundationSocial().stream()
+                            .filter(s -> s.getFoundationsContact().getId().equals(id))
+                            .map(s -> Integer.parseInt(s.getSocialMedia().getId()))
+                            .collect(Collectors.toList());
+
+                    List<SocialMediaResponse> socialMediaFoundation = socialMediaRepository.findAllById(socialMediaIds).stream()
+                            .map(socialMediaMapper::entityToDomain)
+                            .map(socialMediaMapper::domainToResponse)
+                            .toList();
+
+                    return foundContactDashboardMapper.domainToResponse(
+                            foundationContact,
+                            foundation,
+                            foundationEntity.getProjectsInFoundation().size(),
+                            socialMediaFoundation
+                    );
                 });
     }
 

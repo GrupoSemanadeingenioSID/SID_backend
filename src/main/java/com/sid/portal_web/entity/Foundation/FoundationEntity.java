@@ -1,12 +1,13 @@
-package com.sid.portal_web.entity;
+package com.sid.portal_web.entity.Foundation;
 
+import com.sid.portal_web.entity.Projects.ProjectEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import java.io.Serializable;
-
+import java.util.List;
 
 @Entity
 @Table(name = "foundation")
@@ -25,4 +26,12 @@ public class FoundationEntity implements Serializable {
     private String description;
 
     private String logo_url;
+
+    @ManyToMany
+    @JoinTable(
+            name = "project_foundation",
+            joinColumns = @JoinColumn(name = "foundation_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id")
+    )
+    private List<ProjectEntity> projectsInFoundation;
 }

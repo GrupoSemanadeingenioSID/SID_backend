@@ -1,4 +1,4 @@
-package com.sid.portal_web.entity;
+package com.sid.portal_web.entity.Foundation;
 
 import java.io.Serializable;
 import jakarta.persistence.*;

@@ -2,10 +2,9 @@ package com.sid.portal_web.mapper.foundation;
 
 
 import com.sid.portal_web.core.Foundation;
-import com.sid.portal_web.core.FoundationContact;
 import com.sid.portal_web.dto.request.FoundationRequest;
 import com.sid.portal_web.dto.response.FoundationResponse;
-import com.sid.portal_web.entity.FoundationEntity;
+import com.sid.portal_web.entity.Foundation.FoundationEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
