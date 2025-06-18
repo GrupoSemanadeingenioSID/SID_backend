@@ -1,8 +1,9 @@
 package com.sid.portal_web.repository;
 
-import com.sid.portal_web.entity.NewsTopic;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.sid.portal_web.entity.News.NewsTopic;
 
 @Repository
 public interface NewsTopicRepository extends JpaRepository<NewsTopic, String> {

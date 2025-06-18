@@ -1,4 +1,6 @@
-package com.sid.portal_web.entity;
+package com.sid.portal_web.entity.News;
+
+import com.sid.portal_web.entity.UserEntity;
 
 import jakarta.persistence.*;
 import lombok.*;

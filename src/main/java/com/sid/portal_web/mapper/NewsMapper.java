@@ -5,9 +5,9 @@ import com.sid.portal_web.dto.request.NewsUpdateRequest;
 import com.sid.portal_web.dto.response.NewsDetailResponse;
 import com.sid.portal_web.dto.response.NewsResponse;
 import com.sid.portal_web.dto.response.NewsSummaryResponse;
-import com.sid.portal_web.entity.Member;
-import com.sid.portal_web.entity.News;
-import com.sid.portal_web.entity.NewsTopic;
+import com.sid.portal_web.entity.News.News;
+import com.sid.portal_web.entity.News.NewsTopic;
+import com.sid.portal_web.entity.News.Member;
 
 import java.util.List;
 import java.util.stream.Collectors;

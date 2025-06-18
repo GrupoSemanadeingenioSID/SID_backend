@@ -1,8 +1,9 @@
 package com.sid.portal_web.repository;
 
-import com.sid.portal_web.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.sid.portal_web.entity.News.Member;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {

@@ -1,4 +1,4 @@
-package com.sid.portal_web.entity;
+package com.sid.portal_web.entity.News;
 
 import jakarta.persistence.*;
 import lombok.*;

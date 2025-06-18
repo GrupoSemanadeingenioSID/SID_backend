@@ -3,6 +3,9 @@ package com.sid.portal_web;
 import com.sid.portal_web.dto.request.NewsRequest;
 import com.sid.portal_web.dto.response.NewsResponse;
 import com.sid.portal_web.entity.*;
+import com.sid.portal_web.entity.News.News;
+import com.sid.portal_web.entity.News.NewsTopic;
+import com.sid.portal_web.entity.News.Member;
 import com.sid.portal_web.mapper.NewsMapper;
 
 import java.time.LocalDateTime;
