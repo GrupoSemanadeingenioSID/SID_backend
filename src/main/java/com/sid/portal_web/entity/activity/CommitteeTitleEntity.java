@@ -4,8 +4,6 @@ package com.sid.portal_web.entity.activity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "committee_title")

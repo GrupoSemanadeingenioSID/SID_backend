@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 /**
- * Representa una entidad de actividad en el sistema.
- * Almacena información sobre tareas, proyectos o actividades a realizar.
+ * Representa una entidad de actividad
  **/
 
 @Entity
@@ -59,10 +58,10 @@ public class ActivityEntity {
 
 
     @OneToMany(mappedBy = "activity")
-    private Set<ActivityDevEntity> activityDev;
+    private List<ActivityDevEntity> activityDev;
 
     @OneToMany(mappedBy = "activity")
-    private Set<ActivityParticipationEntity> activityParticipation;
+    private List<ActivityParticipationEntity> activityParticipation;
 
 
 }

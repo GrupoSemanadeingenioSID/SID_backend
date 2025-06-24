@@ -24,6 +24,4 @@ public class ActivityResponse {
     private LocalDate startDate;
     private LocalDate completionDate;
     private String manager;
-
-
 }

@@ -112,4 +112,22 @@ WHERE a.activity_id = :activityById;
                 a.completion_date
 """, nativeQuery = true)
     Page<ActivityWithManagerProjection> findAllActivitiesWithManager(Pageable pageable);
+
+
+    @Query(value = "SELECT \n" +
+            "    a.activity_id,\n" +
+            "    p.name AS leader_name\n" +
+            "FROM activities a\n" +
+            "INNER JOIN activity_dev ad ON a.activity_id = ad.activity_id\n" +
+            "INNER JOIN committee c ON ad.committee_id = c.committee_id\n" +
+            "INNER JOIN committee_member cm ON c.committee_id = cm.committee_id\n" +
+            "INNER JOIN committee_title ct ON cm.committee_title_id = ct.committee_title_id\n" +
+            "INNER JOIN members m ON cm.member_id = m.member_id\n" +
+            "INNER JOIN users u ON m.user_id = u.user_id\n" +
+            "INNER JOIN profile p ON u.user_id = p.user_id\n" +
+            "WHERE ct.title = 'Presidente'\n" +
+            "    AND cm.active = true\n" +
+            "\tAND a.activity_id = 1;",
+            nativeQuery = true)
+    List<Object[]> findLeaderCommitteeByActivityId(@Param("activityId") Integer activityId);
 }

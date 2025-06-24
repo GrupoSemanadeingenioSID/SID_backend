@@ -5,15 +5,16 @@ import com.sid.portal_web.dto.response.ActivityResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 
 public interface IActivityService {
 
+    //Obtener todas las actividades
+    Page<ActivityResponse> getAll(Pageable pageable);
 
-    // Método para obtener todas las actividades con manager
-    Page<ActivityResponse> getAllActivities(Pageable pageable);
-
-    // Método para obtener una actividad específica
-    ActivityByIdResponse getActivityById(Integer activityId);
+    //Obtener por id
+    Optional<ActivityByIdResponse> getById(Integer activityId);
 
 
 

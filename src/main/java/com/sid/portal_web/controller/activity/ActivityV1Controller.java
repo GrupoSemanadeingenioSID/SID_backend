@@ -28,15 +28,17 @@ public class ActivityV1Controller {
 
 
     @GetMapping
-    public ResponseEntity<Page<ActivityResponse>> getAllActivities(Pageable pageable) {
+    public ResponseEntity<Page<ActivityResponse>> getAll(Pageable pageable) {
 
-        return ResponseEntity.ok(activityService.getAllActivities(pageable));
+        return ResponseEntity.ok(activityService.getAll(pageable));
 
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ActivityByIdResponse> getActivityById(@PathVariable Integer id) {
-        return ResponseEntity.ok(activityService.getActivityById(id));
+    public ResponseEntity<ActivityByIdResponse> getById(@PathVariable Integer id) {
+        return activityService.getById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
 }

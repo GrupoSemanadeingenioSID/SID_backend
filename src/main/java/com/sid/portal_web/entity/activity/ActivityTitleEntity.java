@@ -3,8 +3,7 @@ package com.sid.portal_web.entity.activity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "activity_title")
@@ -19,6 +18,6 @@ public class ActivityTitleEntity {
     private String description;
 
     @OneToMany(mappedBy = "title")
-    private Set<ActivityParticipationEntity> activityParticipation = new HashSet<>();
+    private List<ActivityParticipationEntity> activityParticipation;
 
 }

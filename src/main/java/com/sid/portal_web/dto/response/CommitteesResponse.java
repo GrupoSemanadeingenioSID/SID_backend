@@ -7,11 +7,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
-@Data
 @NoArgsConstructor
+@Data
 @Builder
-public class CommitteeDTO {
+public class CommitteesResponse {
     private String name;
-    private String description;
     private String leader;
+    private String description;
+
 }

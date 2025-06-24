@@ -24,6 +24,7 @@ public class ActivityByIdResponse {
     private LocalDate startDate;
     private LocalDate completionDate;
     private String manager;
-    private List<MemberDTO> members;
-    private List<CommitteeDTO> committees;
+
+    private List<MembersResponse> members;
+    private List<CommitteesResponse> committees;
 }

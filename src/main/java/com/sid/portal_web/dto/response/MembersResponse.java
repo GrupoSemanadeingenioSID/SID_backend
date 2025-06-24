@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Builder
-public class MemberDTO {
+public class MembersResponse {
+
     private String name;
     private String identify;
-    private Boolean isMember;
+    private boolean isMember;
+
 }

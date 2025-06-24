@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,6 +24,6 @@ public class ActivityMembersEntity {
     private String id;
 
     @OneToMany(mappedBy = "activityMember")
-    private Set<ActivityParticipationEntity> activityParticipation = new HashSet<>();
+    private List<ActivityParticipationEntity> activityParticipation;
 
 }
