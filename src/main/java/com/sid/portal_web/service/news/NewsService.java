@@ -8,5 +8,8 @@ import java.util.List;
 public interface NewsService {
     NewsResponse createNews(NewsRequest request);
     List<NewsResponse> getAllNews();
+    NewsResponse getNewsById(Long id);
+    NewsResponse updateNews(Long id, NewsRequest request);
+    void deleteNews(Long id);
     List<NewsResponse> searchByTitle(String keyword);
 }

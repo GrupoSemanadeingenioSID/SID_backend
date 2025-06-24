@@ -1,35 +1,49 @@
 package com.sid.portal_web.controller.news;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.sid.portal_web.dto.request.NewsRequest;
+import com.sid.portal_web.dto.response.NewsResponse;
+import com.sid.portal_web.service.news.NewsService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-/**
- * Controlador para gestionar las noticias.
- * Versión 1 (para mejorar).
- */
+import java.util.List;
+
 @RestController
+@RequestMapping("/api/v1/news")
+@RequiredArgsConstructor
 public class NewsV1Controller {
 
-    /**
-     * Endpoint para obtener una respuesta según un parámetro.
-     * Ejemplo: /noticias?param=algo
-     *
-     * @param param Parámetro de consulta
-     * @return una cadena con el contenido personalizado
-     */
-    @GetMapping("/noticias")
-    public String getNews(@RequestParam String param) {
-        return "Parámetro recibido: " + param;
+    private final NewsService newsService;
+
+    @PostMapping
+    public ResponseEntity<NewsResponse> createNews(@RequestBody NewsRequest request) {
+        return ResponseEntity.status(201).body(newsService.createNews(request));
     }
 
-    /**
-     * Endpoint informativo.
-     *
-     * @return texto fijo "noticias"
-     */
-    @GetMapping("/noticias/info")
-    public String info() {
-        return "noticias";
+    @GetMapping
+    public ResponseEntity<List<NewsResponse>> getAllNews() {
+        return ResponseEntity.ok(newsService.getAllNews());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<NewsResponse> getNewsById(@PathVariable Long id) {
+        return ResponseEntity.ok(newsService.getNewsById(id));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<NewsResponse> updateNews(@PathVariable Long id, @RequestBody NewsRequest request) {
+        return ResponseEntity.ok(newsService.updateNews(id, request));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteNews(@PathVariable Long id) {
+        newsService.deleteNews(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<NewsResponse>> searchByTitle(@RequestParam String keyword) {
+        return ResponseEntity.ok(newsService.searchByTitle(keyword));
     }
 }
