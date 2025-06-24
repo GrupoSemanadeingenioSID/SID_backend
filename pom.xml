@@ -52,6 +52,15 @@
                 <role>Developer</role>
             </roles>
         </developer>
+         <developer>
+            <name>Janeth Oliveros Ramirez</name>
+            <email>joliverosr@udistrital.edu.co</email>
+            <organization>SID</organization>
+            <roles>
+                <role>Backend Developer</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
         <developer>
             <name>Henry Ricaurte Mora</name>
             <email>hricaurtem@udistrital.edu.co</email>
